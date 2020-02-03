@@ -1,0 +1,2 @@
+# TeamworkAPI.Sharp
+C# API wrapper for [teamwork.tf](https://teamwork.tf), a free resource of community servers, index of YouTube creators and Team Fortress 2 news. For API documentation, go here: https://github.com/teamworktf/website_api
