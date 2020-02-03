@@ -6,11 +6,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using TeamworkAPI.Objects;
 
 namespace TeamworkAPI
 {
-    public class TeamworkAPI
+    public class TeamworkClient
     {
         private const string teamworkUrl = "https://teamwork.tf/api/v1/";
         private string apiKey;
@@ -133,9 +132,9 @@ namespace TeamworkAPI
             "tr_target"
         };
 
-        public TeamworkAPI(string apiKey)
+        public TeamworkClient(string apiKey)
         {
-            this.apiKey = apiKey ?? throw new ArgumentNullException(apiKey, "An API key must be provided!");
+            this.apiKey = apiKey ?? throw new ArgumentNullException(apiKey, "An API key must be provided. See: https://teamwork.tf/api");
         }
 
         private async Task<T> Request<T>(string query)

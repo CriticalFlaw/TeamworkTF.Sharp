@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace TeamworkAPI.Objects
+namespace TeamworkAPI
 {
     public class Map
     {

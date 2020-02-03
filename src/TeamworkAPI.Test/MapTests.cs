@@ -4,12 +4,12 @@ namespace TeamworkAPI.Test
 {
     public class MapTests
     {
-        public TeamworkAPI client;
+        public TeamworkClient client;
 
         [SetUp]
         public void Setup()
         {
-            client = new TeamworkAPI("");
+            client = new TeamworkClient("");
         }
 
         [Test]

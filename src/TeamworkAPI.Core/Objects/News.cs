@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace TeamworkAPI.Objects
+namespace TeamworkAPI
 {
     public class News
     {
