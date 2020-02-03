@@ -177,7 +177,7 @@ namespace TeamworkAPI
             return await Request<Mode>("quickplay").ConfigureAwait(false);
         }
 
-        public async Task<Mode> GetGameModeAsync(string gamemode)
+        private async Task<Mode> GetGameModeAsync(string gamemode)
         {
             return await Request<Mode>($"quickplay/{NormalizedGameMode(gamemode)}").ConfigureAwait(false);
         }
@@ -212,9 +212,9 @@ namespace TeamworkAPI
             return await Request<CompProviderStats>($"competitive/provider/{provider}/stats").ConfigureAwait(false);
         }
 
-        public async Task<List<MapSearch>> GetMapsBySearchAsync(string search)
+        private async Task<MapSearch> GetMapsBySearchAsync(string search)
         {
-            return await Request<List<MapSearch>>($"map-stats/search?search_term={search}").ConfigureAwait(false);
+            return await Request<MapSearch>($"map-stats/search?search_term={search}").ConfigureAwait(false);
         }
 
         public async Task<Map> GetMapStatsAsync(string mapName)

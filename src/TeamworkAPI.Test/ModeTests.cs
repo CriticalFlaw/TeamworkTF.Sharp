@@ -13,9 +13,10 @@ namespace TeamworkAPI.Test
         }
 
         [Test]
+        [Ignore("Skip. Function is deprecated/currently unavailable.")]
         public void GetGameMode()
         {
-            Assert.IsNotNull(client.GetGameModeAsync("payload").Result);
+            //Assert.IsNotNull(client.GetGameModeAsync("ctf").Result.Official);
         }
 
         [Test]
@@ -28,6 +29,7 @@ namespace TeamworkAPI.Test
         public void GetGameModeServer()
         {
             Assert.IsNotNull(client.GetGameModeServerAsync("payload").Result);
+            Assert.IsNull(client.GetGameModeServerAsync("payloader").Result);
         }
     }
 }

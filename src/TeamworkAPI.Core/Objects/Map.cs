@@ -105,7 +105,7 @@ namespace TeamworkAPI
     public class MapSearch
     {
         [JsonProperty("map_name")]
-        public string Name { get; set; }
+        public List<string> Name { get; set; }
     }
 
     public class MapThumbnail
