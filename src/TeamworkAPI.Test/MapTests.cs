@@ -2,16 +2,8 @@ using NUnit.Framework;
 
 namespace TeamworkAPI.Test
 {
-    public class MapTests
+    public class MapTests : BaseTest
     {
-        public TeamworkClient client;
-
-        [SetUp]
-        public void Setup()
-        {
-            client = new TeamworkClient("");
-        }
-
         [Test]
         public void GetMapStats()
         {
@@ -34,10 +26,9 @@ namespace TeamworkAPI.Test
         }
 
         [Test]
-        [Ignore("Skip. Unexpected character encountered while parsing value: <. Path '', line 0, position 0.")]
         public void GetMapsBySearch()
         {
-            //Assert.IsNotNull(client.GetMapsBySearchAsync("hightower").Result);
+            Assert.IsNotNull(client.GetMapsBySearchAsync("hightower").Result);
         }
     }
 }

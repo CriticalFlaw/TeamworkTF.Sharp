@@ -143,7 +143,8 @@ namespace TeamworkAPI
             client.BaseAddress = new Uri(teamworkUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            var response = await client.GetAsync($"{teamworkUrl}{query}?key={apiKey}").ConfigureAwait(false);
+            var delimiter = (query.Contains("?")) ? "&" : "?";
+            var response = await client.GetAsync($"{teamworkUrl}{query}{delimiter}key={apiKey}").ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -162,74 +163,10 @@ namespace TeamworkAPI
             errorArgs.ErrorContext.Handled = true;
         }
 
-        public async Task<List<News>> GetNewsOverviewAsync()
+        public List<string> NormalizedMapName(string query)
         {
-            return await Request<List<News>>("news").ConfigureAwait(false);
-        }
-
-        public async Task<News> GetNewsPostAsync(string hash)
-        {
-            return await Request<News>($"news/hash/{hash}").ConfigureAwait(false);
-        }
-
-        public async Task<Mode> GetGameModeListAsync()
-        {
-            return await Request<Mode>("quickplay").ConfigureAwait(false);
-        }
-
-        private async Task<Mode> GetGameModeAsync(string gamemode)
-        {
-            return await Request<Mode>($"quickplay/{NormalizedGameMode(gamemode)}").ConfigureAwait(false);
-        }
-
-        public async Task<List<Server>> GetGameModeServerAsync(string gamemode)
-        {
-            return await Request<List<Server>>($"quickplay/{NormalizedGameMode(gamemode)}/servers").ConfigureAwait(false);
-        }
-
-        public async Task<Provider> GetCommunityProviderAsync(string provider)
-        {
-            return await Request<Provider>($"community/provider/{provider}").ConfigureAwait(false);
-        }
-
-        public async Task<ProviderStats> GetCommunityProviderStatsAsync(string provider)
-        {
-            return await Request<ProviderStats>($"community/provider/{provider}/stats").ConfigureAwait(false);
-        }
-
-        public async Task<List<Server>> GetCommunityProviderServersAsync(string provider)
-        {
-            return await Request<List<Server>>($"community/provider/{provider}/servers").ConfigureAwait(false);
-        }
-
-        public async Task<CompProvider> GetCompetitiveProviderAsync(string provider)
-        {
-            return await Request<CompProvider>($"competitive/provider/{provider}").ConfigureAwait(false);
-        }
-
-        public async Task<CompProviderStats> GetCompetitiveProviderStatsAsync(string provider)
-        {
-            return await Request<CompProviderStats>($"competitive/provider/{provider}/stats").ConfigureAwait(false);
-        }
-
-        private async Task<MapSearch> GetMapsBySearchAsync(string search)
-        {
-            return await Request<MapSearch>($"map-stats/search?search_term={search}").ConfigureAwait(false);
-        }
-
-        public async Task<Map> GetMapStatsAsync(string mapName)
-        {
-            return await Request<Map>($"map-stats/map/{NormalizedMapName(mapName).FirstOrDefault()}").ConfigureAwait(false);
-        }
-
-        public async Task<MapThumbnail> GetMapThumbnailAsync(string mapName)
-        {
-            return await Request<MapThumbnail>($"map-stats/mapthumbnail/{mapName}").ConfigureAwait(false);
-        }
-
-        public async Task<ThumbnailContext> GetMapThumbnailContextAsync(string mapName)
-        {
-            return await Request<ThumbnailContext>($"map-stats/mapthumbnail/{mapName}").ConfigureAwait(false);
+            query = (query.Contains('_')) ? query.ToLowerInvariant().Split('_')[1] : query;
+            return mapList.Where(x => x.Contains(query)).ToList();
         }
 
         public string NormalizedGameMode(string query)
@@ -263,10 +200,135 @@ namespace TeamworkAPI
             }
         }
 
-        public List<string> NormalizedMapName(string query)
+        #region NEWS
+
+        public async Task<List<News>> GetNewsOverviewAsync()
         {
-            query = (query.Contains('_')) ? query.ToLowerInvariant().Split('_')[1] : query;
-            return mapList.Where(x => x.Contains(query)).ToList();
+            return await Request<List<News>>("news").ConfigureAwait(false);
         }
+
+        public async Task<News> GetNewsPostAsync(string hash)
+        {
+            return await Request<News>($"news/hash/{hash}").ConfigureAwait(false);
+        }
+
+        public async Task<List<News>> GetNewsByPageAsync(int hash)
+        {
+            return await Request<List<News>>($"news?page={hash}").ConfigureAwait(false);
+        }
+
+        public async Task<List<News>> GetNewsByProviderAsync(string hash)
+        {
+            return await Request<List<News>>($"news?provider={hash}").ConfigureAwait(false);
+        }
+
+        #endregion NEWS
+
+        #region CREATORS
+
+        public async Task<List<Creator>> GetCreatorByIDAsync(string id)
+        {
+            return await Request<List<Creator>>($"youtube-creator/steamid/{id}").ConfigureAwait(false);
+        }
+
+        #endregion CREATORS
+
+        #region QUICKPLAY
+
+        public async Task<GameMode> GetGameModeAsync(string gamemode)
+        {
+            return await Request<GameMode>($"quickplay/{NormalizedGameMode(gamemode)}").ConfigureAwait(false);
+        }
+
+        public async Task<GameMode> GetGameModeListAsync()
+        {
+            return await Request<GameMode>("quickplay").ConfigureAwait(false);
+        }
+
+        public async Task<List<Server>> GetGameModeServerAsync(string gamemode)
+        {
+            return await Request<List<Server>>($"quickplay/{NormalizedGameMode(gamemode)}/servers").ConfigureAwait(false);
+        }
+
+        public async Task<List<Server>> GetGameServerInfoAsync(string ip, int port)
+        {
+            return await Request<List<Server>>($"quickplay/server?ip={ip}&port={port}").ConfigureAwait(false);
+        }
+
+        #endregion QUICKPLAY
+
+        #region SERVERS
+
+        public async Task<Provider> GetCommunityProviderAsync(string provider)
+        {
+            return await Request<Provider>($"community/provider/{provider}").ConfigureAwait(false);
+        }
+
+        public async Task<List<Server>> GetCommunityProviderServersAsync(string provider)
+        {
+            return await Request<List<Server>>($"community/provider/{provider}/servers").ConfigureAwait(false);
+        }
+
+        public async Task<ProviderStats> GetCommunityProviderStatsAsync(string provider)
+        {
+            return await Request<ProviderStats>($"community/provider/{provider}/stats").ConfigureAwait(false);
+        }
+
+        public async Task<CompProvider> GetCompetitiveProviderAsync(string provider)
+        {
+            return await Request<CompProvider>($"competitive/provider/{provider}").ConfigureAwait(false);
+        }
+
+        private async Task<List<Server>> GetCompetitiveProviderServersAsync(string provider)
+        {
+            // Endpoint is deprecated
+            return await Request<List<Server>>($"competitive/provider/{provider}/servers").ConfigureAwait(false);
+        }
+
+        public async Task<CompProviderStats> GetCompetitiveProviderStatsAsync(string provider)
+        {
+            return await Request<CompProviderStats>($"competitive/provider/{provider}/stats").ConfigureAwait(false);
+        }
+
+        public async Task<List<ServerList>> GetCustomServerListsAsync()
+        {
+            return await Request<List<ServerList>>($"customserverlist").ConfigureAwait(false);
+        }
+
+        public async Task<ServerList> GetSpecificServerListAsync(int id)
+        {
+            return await Request<ServerList>($"customserverlist/{id}").ConfigureAwait(false);
+        }
+
+        public async Task<List<Server>> GetServersFromServerListAsync(int id)
+        {
+            return await Request<List<Server>>($"customserverlist/{id}/servers").ConfigureAwait(false);
+        }
+
+        #endregion SERVERS
+
+        #region GAMEMAPS
+
+        public async Task<Map> GetMapStatsAsync(string mapName)
+        {
+            return await Request<Map>($"map-stats/map/{NormalizedMapName(mapName).FirstOrDefault()}").ConfigureAwait(false);
+        }
+
+        public async Task<MapThumbnail> GetMapThumbnailAsync(string mapName)
+        {
+            return await Request<MapThumbnail>($"map-stats/mapthumbnail/{mapName}").ConfigureAwait(false);
+        }
+
+        public async Task<ThumbnailContext> GetMapThumbnailContextAsync(string mapName)
+        {
+            return await Request<ThumbnailContext>($"map-stats/mapimages/{mapName}").ConfigureAwait(false);
+        }
+
+        public async Task<List<Map>> GetMapsBySearchAsync(string search)
+        {
+            return await Request<List<Map>>($"map-stats/search?search_term={search}").ConfigureAwait(false);
+        }
+
+        #endregion GAMEMAPS
     }
 }

@@ -6,7 +6,7 @@ namespace TeamworkAPI
     public class Server
     {
         [JsonProperty("ip")]
-        public string IP { get; set; }
+        public string Ip { get; set; }
 
         [JsonProperty("port")]
         public string Port { get; set; }
@@ -18,28 +18,22 @@ namespace TeamworkAPI
         public bool Reachable { get; set; }
 
         [JsonProperty("provider")]
-        public string Provider { get; set; }
+        public Provider Provider { get; set; }
 
         [JsonProperty("valve_secure")]
-        public bool ValveSecured { get; set; }
-
-        [JsonProperty("sourcecbl_secure")]
-        public bool SourceSecured { get; set; }
+        public bool ValveSecure { get; set; }
 
         [JsonProperty("map_name")]
         public string MapName { get; set; }
 
-        [JsonProperty("map_name_thumbnail")]
-        public string ThumbnailPath { get; set; }
-
         [JsonProperty("map_name_next")]
-        public string NextMap { get; set; }
+        public string MapNameNext { get; set; }
 
         [JsonProperty("players")]
-        public int PlayerCount { get; set; }
+        public long Players { get; set; }
 
         [JsonProperty("max_players")]
-        public int PlayerCountMax { get; set; }
+        public long MaxPlayers { get; set; }
 
         [JsonProperty("gamemodes")]
         public List<string> GameModes { get; set; }
@@ -48,16 +42,16 @@ namespace TeamworkAPI
         public string GameType { get; set; }
 
         [JsonProperty("has_password")]
-        public bool? HasPassword { get; set; }
+        public bool HasPassword { get; set; }
 
         [JsonProperty("has_rtd")]
-        public bool HasRollTheDice { get; set; }
+        public bool HasRtd { get; set; }
 
         [JsonProperty("has_randomcrits")]
         public bool? HasRandomCrits { get; set; }
 
         [JsonProperty("has_norespawntime")]
-        public bool HasNoSpawnTimer { get; set; }
+        public bool HasNoRespawnTime { get; set; }
 
         [JsonProperty("has_alltalk")]
         public bool HasAllTalk { get; set; }

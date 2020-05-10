@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace TeamworkAPI
@@ -6,7 +7,7 @@ namespace TeamworkAPI
     public class Provider
     {
         [JsonProperty("id")]
-        public string ID { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -15,28 +16,28 @@ namespace TeamworkAPI
         public string Description { get; set; }
 
         [JsonProperty("website")]
-        public string Website { get; set; }
+        public Uri Website { get; set; }
 
         [JsonProperty("rules_url")]
-        public string RulesUrl { get; set; }
+        public Uri RulesUrl { get; set; }
 
         [JsonProperty("steam_group_url")]
-        public string SteamGroupUrl { get; set; }
+        public Uri SteamGroupUrl { get; set; }
 
         [JsonProperty("location_focus")]
         public string LocationFocus { get; set; }
 
         [JsonProperty("statistics")]
-        public string StatsUrl { get; set; }
+        public Uri StatsUrl { get; set; }
 
         [JsonProperty("image")]
-        public string ImageUrl { get; set; }
+        public Uri ImageUrl { get; set; }
     }
 
     public class ProviderStats
     {
         [JsonProperty("players")]
-        public int Players { get; set; }
+        public long Players { get; set; }
 
         [JsonProperty("regions_with_players")]
         public Regions Regions { get; set; }
@@ -45,10 +46,10 @@ namespace TeamworkAPI
         public List<string> GameModes { get; set; }
 
         [JsonProperty("servers_online")]
-        public int ServersOnline { get; set; }
+        public long ServersOnline { get; set; }
 
         [JsonProperty("servers_total")]
-        public int ServersTotal { get; set; }
+        public long ServersTotal { get; set; }
     }
 
     public struct Regions
@@ -69,13 +70,13 @@ namespace TeamworkAPI
     public class CompProvider
     {
         [JsonProperty("id")]
-        public string ID { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("url")]
-        public string Url { get; set; }
+        public Uri Url { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }
@@ -87,21 +88,21 @@ namespace TeamworkAPI
     public class CompProviderStats
     {
         [JsonProperty("id")]
-        public int ID { get; set; }
+        public long Id { get; set; }
 
         [JsonProperty("provider")]
         public string Provider { get; set; }
 
         [JsonProperty("created_at")]
-        public string CreationDate { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
 
         [JsonProperty("players")]
-        public int PlayerCount { get; set; }
+        public long Players { get; set; }
 
         [JsonProperty("servers_empty")]
-        public int ServerCountEmpty { get; set; }
+        public long ServersEmpty { get; set; }
 
         [JsonProperty("servers_non_empty")]
-        public int ServerCountActive { get; set; }
+        public long ServersNonEmpty { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace TeamworkAPI
 {
@@ -17,19 +18,19 @@ namespace TeamworkAPI
         public string Title { get; set; }
 
         [JsonProperty("link")]
-        public string Link { get; set; }
+        public Uri Link { get; set; }
 
         [JsonProperty("created_at")]
-        public CreatedAt CreationDate { get; set; }
+        public CreatedAt CreatedAt { get; set; }
     }
 
     public class CreatedAt
     {
         [JsonProperty("date")]
-        public string Date { get; set; }
+        public DateTimeOffset Date { get; set; }
 
         [JsonProperty("timezone_type")]
-        public int TimeZoneType { get; set; }
+        public long TimeZoneType { get; set; }
 
         [JsonProperty("timezone")]
         public string TimeZone { get; set; }
