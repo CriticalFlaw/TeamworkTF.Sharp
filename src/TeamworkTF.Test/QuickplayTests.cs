@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace TeamworkAPI.Test
+namespace TeamworkTF.Test
 {
     public class QuickplayTests : BaseTest
     {
@@ -27,7 +27,6 @@ namespace TeamworkAPI.Test
         public void GetGameServerInfo()
         {
             Assert.IsNotNull(client.GetGameServerInfoAsync("164.132.233.16", 27022).Result);
-            Assert.IsNull(client.GetGameServerInfoAsync("167.71.163.148", 27015).Result);
         }
     }
 }

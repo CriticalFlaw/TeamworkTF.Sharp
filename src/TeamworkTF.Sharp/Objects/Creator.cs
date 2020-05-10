@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace TeamworkAPI
+namespace TeamworkTF.Sharp
 {
     public class Creator
     {

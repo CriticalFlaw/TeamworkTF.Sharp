@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace TeamworkAPI
+namespace TeamworkTF.Sharp
 {
     public class ServerList
     {

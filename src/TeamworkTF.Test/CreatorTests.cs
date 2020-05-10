@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace TeamworkAPI.Test
+namespace TeamworkTF.Test
 {
     public class CreatorTests : BaseTest
     {

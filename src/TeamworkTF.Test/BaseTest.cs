@@ -1,6 +1,7 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
+using TeamworkTF.Sharp;
 
-namespace TeamworkAPI.Test
+namespace TeamworkTF.Test
 {
     public class BaseTest
     {
@@ -9,7 +10,7 @@ namespace TeamworkAPI.Test
         [OneTimeSetUp]
         public void Setup()
         {
-            client = new TeamworkClient("CAYpIqrbaw4WgZcmBd61htfiePyoVzHJ");
+            client = new TeamworkClient("");
         }
     }
 }
