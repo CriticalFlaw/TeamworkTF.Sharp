@@ -2,8 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
+    <Version>1.1.0</Version>
+    <Authors>Igor Nikitin</Authors>
+    <Company>CriticalFlaw</Company>
+    <Description />
+    <Copyright>2020</Copyright>
+    <RepositoryUrl>https://github.com/CriticalFlaw/TeamworkTF.Sharp</RepositoryUrl>
+    <PackageTags>tf2</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

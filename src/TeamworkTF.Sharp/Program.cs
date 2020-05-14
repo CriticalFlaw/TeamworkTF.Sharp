@@ -325,9 +325,9 @@ namespace TeamworkTF.Sharp
             return await Request<ThumbnailContext>($"map-stats/mapimages/{mapName}").ConfigureAwait(false);
         }
 
-        public async Task<List<Map>> GetMapsBySearchAsync(string search)
+        public async Task<List<MapName>> GetMapsBySearchAsync(string search)
         {
-            return await Request<List<Map>>($"map-stats/search?search_term={search}").ConfigureAwait(false);
+            return await Request<List<MapName>>($"map-stats/search?search_term={search}").ConfigureAwait(false);
         }
 
         #endregion GAMEMAPS

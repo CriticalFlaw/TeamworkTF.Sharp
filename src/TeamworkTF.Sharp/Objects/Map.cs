@@ -70,6 +70,12 @@ namespace TeamworkTF.Sharp
         public Uri BspUrl { get; set; }
     }
 
+    public class MapName
+    {
+        [JsonProperty("map_name")]
+        public string Name { get; set; }
+    }
+
     public class MapContext
     {
         [JsonProperty("normalized_map_name")]
