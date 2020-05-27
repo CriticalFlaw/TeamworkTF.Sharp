@@ -7,28 +7,28 @@ namespace TeamworkTF.Test
         [Test]
         public void GetMapStats()
         {
-            Assert.IsNotNull(client.GetMapStatsAsync("pl_upward").Result);
-            Assert.IsNull(client.GetMapStatsAsync("plr_rupward").Result);
+            Assert.IsNotNull(Client.GetMapStatsAsync("pl_upward").Result);
+            Assert.IsNull(Client.GetMapStatsAsync("plra_rupward").Result.MapName);
         }
 
         [Test]
         public void GetMapThumbnail()
         {
-            Assert.IsNotNull(client.GetMapThumbnailAsync("pl_upward").Result.Name);
-            Assert.IsNull(client.GetMapThumbnailAsync("plr_rupward").Result.Name);
+            Assert.IsNotNull(Client.GetMapThumbnailAsync("pl_upward").Result.Name);
+            Assert.IsNull(Client.GetMapThumbnailAsync("plr_rupward").Result.Name);
         }
 
         [Test]
         public void GetMapThumbnailContext()
         {
-            Assert.IsNotNull(client.GetMapThumbnailContextAsync("pl_upward").Result.Thumbnail);
-            Assert.IsNull(client.GetMapThumbnailContextAsync("plr_rupward").Result.Thumbnail);
+            Assert.IsNotNull(Client.GetMapThumbnailContextAsync("pl_upward").Result.Thumbnail);
+            Assert.IsNull(Client.GetMapThumbnailContextAsync("plr_rupward").Result.Thumbnail);
         }
 
         [Test]
         public void GetMapsBySearch()
         {
-            Assert.IsNotNull(client.GetMapsBySearchAsync("hightower").Result);
+            Assert.IsNotNull(Client.GetMapsBySearchAsync("hightower").Result);
         }
     }
 }

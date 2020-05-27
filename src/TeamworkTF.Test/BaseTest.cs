@@ -5,12 +5,12 @@ namespace TeamworkTF.Test
 {
     public class BaseTest
     {
-        public TeamworkClient client;
+        public TeamworkClient Client;
 
         [OneTimeSetUp]
-        public void Setup()
+        public void GetSetup()
         {
-            client = new TeamworkClient("");
+            Client = new TeamworkClient("");
         }
     }
 }

@@ -7,54 +7,54 @@ namespace TeamworkTF.Test
         [Test]
         public void GetCommunityProvider()
         {
-            Assert.IsNotNull(client.GetCommunityProviderAsync("skial").Result);
-            Assert.IsNull(client.GetCommunityProviderAsync("skiil").Result);
+            Assert.IsNotNull(Client.GetCommunityProviderAsync("skial").Result);
+            Assert.IsNull(Client.GetCommunityProviderAsync("skiil").Result);
         }
 
         [Test]
         public void GetCommunityProviderServers()
         {
-            Assert.Greater(client.GetCommunityProviderServersAsync("skial").Result.Count, 0);
-            Assert.AreEqual(client.GetCommunityProviderServersAsync("skiil").Result.Count, 0);
+            Assert.Greater(Client.GetCommunityProviderServersAsync("skial").Result.Count, 0);
+            Assert.AreEqual(Client.GetCommunityProviderServersAsync("skiil").Result.Count, 0);
         }
 
         [Test]
         public void GetCommunityProviderStats()
         {
-            Assert.IsNotNull(client.GetCommunityProviderStatsAsync("skial").Result);
-            Assert.IsNull(client.GetCommunityProviderStatsAsync("skiil").Result);
+            Assert.IsNotNull(Client.GetCommunityProviderStatsAsync("skial").Result);
+            Assert.IsNull(Client.GetCommunityProviderStatsAsync("skiil").Result);
         }
 
         [Test]
         public void GetCompetitiveProvider()
         {
-            Assert.IsNotNull(client.GetCompetitiveProviderAsync("ugc").Result);
-            Assert.IsNull(client.GetCompetitiveProviderAsync("ugh").Result);
+            Assert.IsNotNull(Client.GetCompetitiveProviderAsync("ugc").Result);
+            Assert.IsNull(Client.GetCompetitiveProviderAsync("ugh").Result);
         }
 
         [Test]
         public void GetCompetitiveProviderStats()
         {
-            Assert.IsNotNull(client.GetCompetitiveProviderStatsAsync("ugc").Result);
-            Assert.IsNull(client.GetCompetitiveProviderStatsAsync("ugh").Result);
+            Assert.IsNotNull(Client.GetCompetitiveProviderStatsAsync("ugc").Result);
+            Assert.IsNull(Client.GetCompetitiveProviderStatsAsync("ugh").Result);
         }
 
         [Test]
         public void GetCustomServerLists()
         {
-            Assert.IsNotNull(client.GetCustomServerListsAsync().Result);
+            Assert.IsNotNull(Client.GetCustomServerListsAsync().Result);
         }
 
         [Test]
         public void GetSpecificServerList()
         {
-            Assert.IsNotNull(client.GetSpecificServerListAsync(1).Result);
+            Assert.IsNotNull(Client.GetSpecificServerListAsync(1).Result);
         }
 
         [Test]
         public void GetServersFromServerList()
         {
-            Assert.IsNotNull(client.GetServersFromServerListAsync(1).Result);
+            Assert.IsNotNull(Client.GetServersFromServerListAsync(1).Result);
         }
     }
 }

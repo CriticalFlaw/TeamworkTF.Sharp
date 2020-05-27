@@ -5,9 +5,9 @@ namespace TeamworkTF.Test
     public class CreatorTests : BaseTest
     {
         [Test]
-        public void GetCreatorByID()
+        public void GetCreatorById()
         {
-            Assert.IsNotNull(client.GetCreatorByIDAsync("76561198041892999").Result);
+            Assert.IsNotNull(Client.GetCreatorByIdAsync("76561198041892999").Result);
         }
     }
 }

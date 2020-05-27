@@ -7,26 +7,26 @@ namespace TeamworkTF.Test
         [Test]
         public void GetGameMode()
         {
-            Assert.IsNotNull(client.GetGameModeAsync("payload").Result.Title);
+            Assert.IsNotNull(Client.GetGameModeAsync("payload").Result.Title);
         }
 
         [Test]
         public void GetGameModeList()
         {
-            Assert.IsNotNull(client.GetGameModeListAsync().Result);
+            Assert.IsNotNull(Client.GetGameModeListAsync().Result);
         }
 
         [Test]
         public void GetGameModeServer()
         {
-            Assert.IsNotNull(client.GetGameModeServerAsync("payload").Result);
-            Assert.IsNull(client.GetGameModeServerAsync("payloader").Result);
+            Assert.IsNotNull(Client.GetGameModeServerAsync("payload").Result);
+            Assert.IsNull(Client.GetGameModeServerAsync("payloader").Result);
         }
 
         [Test]
         public void GetGameServerInfo()
         {
-            Assert.IsNotNull(client.GetGameServerInfoAsync("164.132.233.16", 27022).Result);
+            Assert.IsNotNull(Client.GetGameServerInfoAsync("164.132.233.16", 27022).Result);
         }
     }
 }

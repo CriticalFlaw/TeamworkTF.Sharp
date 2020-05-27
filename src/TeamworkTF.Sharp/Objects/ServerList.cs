@@ -1,33 +1,26 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace TeamworkTF.Sharp
 {
     public class ServerList
     {
-        [JsonProperty("id")]
-        public long Id { get; set; }
+        [JsonProperty("id")] public long Id { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("name")] public string Name { get; set; }
 
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonProperty("description")] public string Description { get; set; }
 
-        [JsonProperty("description_large")]
-        public string DescriptionLarge { get; set; }
+        [JsonProperty("description_large")] public string DescriptionLarge { get; set; }
 
-        [JsonProperty("creator")]
-        public Creator Creator { get; set; }
+        [JsonProperty("creator")] public Creator Creator { get; set; }
 
-        [JsonProperty("subscribed")]
-        public long Subscribed { get; set; }
+        [JsonProperty("subscribed")] public long Subscribed { get; set; }
 
-        [JsonProperty("filters")]
-        public Filters Filters { get; set; }
+        [JsonProperty("filters")] public Filters Filters { get; set; }
     }
 
-    public partial class Filters
+    public class Filters
     {
         [JsonProperty("filter_hostname_whitelist", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> FilterHostnameWhitelist { get; set; }

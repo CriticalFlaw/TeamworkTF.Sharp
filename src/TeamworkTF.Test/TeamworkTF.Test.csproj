@@ -3,22 +3,24 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <IsPackable>false</IsPackable>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Authors>Igor Nikitin</Authors>
     <Company>CriticalFlaw</Company>
     <Description />
     <Copyright>2020</Copyright>
     <RepositoryUrl>https://github.com/CriticalFlaw/TeamworkTF.Sharp</RepositoryUrl>
     <PackageTags>tf2</PackageTags>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="nunit" Version="3.12.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0-beta.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.0-preview-20200519-01" />
   </ItemGroup>
 
   <ItemGroup>
