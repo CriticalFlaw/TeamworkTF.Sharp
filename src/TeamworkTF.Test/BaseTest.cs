@@ -10,7 +10,7 @@ namespace TeamworkTF.Test
         [OneTimeSetUp]
         public void GetSetup()
         {
-            Client = new TeamworkClient("");
+            Client = new TeamworkClient("CAYpIqrbaw4WgZcmBd61htfiePyoVzHJ");
         }
     }
 }

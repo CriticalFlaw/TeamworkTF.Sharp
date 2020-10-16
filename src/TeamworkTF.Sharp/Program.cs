@@ -15,27 +15,23 @@ namespace TeamworkTF.Sharp
 
         public TeamworkClient(string apiKey)
         {
-            this._apiKey = apiKey ?? throw new ArgumentNullException(apiKey,
+            _apiKey = apiKey ?? throw new ArgumentNullException(apiKey,
                 "An API key must be provided. See: https://teamwork.tf/api");
         }
 
         private async Task<T> GetRequest<T>(string query)
         {
-            using var client = new HttpClient {BaseAddress = new Uri(TeamworkUrl)};
+            using var client = new HttpClient { BaseAddress = new Uri(TeamworkUrl) };
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var delimiter = query.Contains("?") ? "&" : "?";
             var response = await client.GetAsync($"{TeamworkUrl}{query}{delimiter}key={_apiKey}").ConfigureAwait(false);
-            if (response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode) return default;
+            var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<T>(json, new JsonSerializerSettings
             {
-                var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                return JsonConvert.DeserializeObject<T>(json, new JsonSerializerSettings
-                {
-                    Error = GetHandleDeserializationError
-                });
-            }
-
-            return default;
+                Error = GetHandleDeserializationError
+            });
         }
 
         public void GetHandleDeserializationError(object sender, ErrorEventArgs errorArgs)
