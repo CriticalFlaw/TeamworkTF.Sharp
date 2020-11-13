@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace TeamworkTF.Test
 {
-    public class MapTests : BaseTest
+    public class Maps : Setup
     {
         [Test]
         public void GetMapStats()
@@ -21,8 +21,8 @@ namespace TeamworkTF.Test
         [Test]
         public void GetMapThumbnailContext()
         {
-            Assert.IsNotNull(Client.GetMapThumbnailContextAsync("pl_upward").Result.Thumbnail);
-            Assert.IsNull(Client.GetMapThumbnailContextAsync("plr_rupward").Result.Thumbnail);
+            Assert.IsNotNull(Client.GetMapImagesAsync("pl_upward").Result.Thumbnail);
+            Assert.IsNull(Client.GetMapImagesAsync("plr_rupward").Result.Thumbnail);
         }
 
         [Test]

@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace TeamworkTF.Test
 {
-    public class NewsTests : BaseTest
+    public class News : Setup
     {
         [Test]
         public void GetNewsOverview()

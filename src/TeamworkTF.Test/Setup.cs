@@ -3,7 +3,7 @@ using TeamworkTF.Sharp;
 
 namespace TeamworkTF.Test
 {
-    public class BaseTest
+    public class Setup
     {
         public TeamworkClient Client;
 
