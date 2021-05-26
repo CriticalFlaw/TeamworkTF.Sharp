@@ -61,20 +61,29 @@ namespace TeamworkTF.Sharp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://teamwork.tf/api/v1/{0}{1}key={2}.
+        ///   Looks up a localized string similar to https://marketplace.tf/api/{0}.
         /// </summary>
-        internal static string API_LINK {
+        internal static string API_MARKETPLACE {
             get {
-                return ResourceManager.GetString("API_LINK", resourceCulture);
+                return ResourceManager.GetString("API_MARKETPLACE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gamemap-creator/steamid/{0}.
+        ///   Looks up a localized string similar to http://api.steampowered.com/IEconItems_440/{0}.
         /// </summary>
-        internal static string CREATORS_MAP {
+        internal static string API_STEAM {
             get {
-                return ResourceManager.GetString("CREATORS_MAP", resourceCulture);
+                return ResourceManager.GetString("API_STEAM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://teamwork.tf/api/v1/{0}{1}key={2}.
+        /// </summary>
+        internal static string API_TEAMWORK {
+            get {
+                return ResourceManager.GetString("API_TEAMWORK", resourceCulture);
             }
         }
         
@@ -97,11 +106,29 @@ namespace TeamworkTF.Sharp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An API key must be provided. Only members of Marketplace&apos;s sellers program can get the key here: https://marketplace.tf/apisettings.
+        /// </summary>
+        internal static string ERROR_KEY_MARKETPLACE {
+            get {
+                return ResourceManager.GetString("ERROR_KEY_MARKETPLACE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An API key must be provided. Go to: https://steamcommunity.com/dev/apikey to get your Steam API key..
+        /// </summary>
+        internal static string ERROR_KEY_STEAM {
+            get {
+                return ResourceManager.GetString("ERROR_KEY_STEAM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An API key must be provided. Go to: https://teamwork.tf/settings and look for your API key under &apos;Show optional settings&apos;..
         /// </summary>
-        internal static string ERROR_INVALID_KEY {
+        internal static string ERROR_KEY_TEAMWORK {
             get {
-                return ResourceManager.GetString("ERROR_INVALID_KEY", resourceCulture);
+                return ResourceManager.GetString("ERROR_KEY_TEAMWORK", resourceCulture);
             }
         }
         
@@ -138,6 +165,42 @@ namespace TeamworkTF.Sharp.Properties {
         internal static string MAP_THUMBNAIL {
             get {
                 return ResourceManager.GetString("MAP_THUMBNAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bots/GetBots/v2.
+        /// </summary>
+        internal static string MARKETPLACE_BOTS {
+            get {
+                return ResourceManager.GetString("MARKETPLACE_BOTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seller/GetDashboardItems/v2?key={0}.
+        /// </summary>
+        internal static string MARKETPLACE_DASHBOARD {
+            get {
+                return ResourceManager.GetString("MARKETPLACE_DASHBOARD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meta/GetEndpoints/v1.
+        /// </summary>
+        internal static string MARKETPLACE_ENDPOINTS {
+            get {
+                return ResourceManager.GetString("MARKETPLACE_ENDPOINTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seller/GetSales/v2?key={0}&amp;num={1}&amp;start_before={2}.
+        /// </summary>
+        internal static string MARKETPLACE_SALES {
+            get {
+                return ResourceManager.GetString("MARKETPLACE_SALES", resourceCulture);
             }
         }
         
@@ -300,6 +363,60 @@ namespace TeamworkTF.Sharp.Properties {
         internal static string SERVER_MODES_SEARCH {
             get {
                 return ResourceManager.GetString("SERVER_MODES_SEARCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GetPlayerItems/v0001?key={0}&amp;steamid={1}.
+        /// </summary>
+        internal static string STEAM_ITEMS {
+            get {
+                return ResourceManager.GetString("STEAM_ITEMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GetSchemaItems/v1?key={0}&amp;language=en.
+        /// </summary>
+        internal static string STEAM_ITEMS_SCHEMA {
+            get {
+                return ResourceManager.GetString("STEAM_ITEMS_SCHEMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://steamcommunity.com/market/priceoverview/?currency=1&amp;appid=440&amp;market_hash_name={0}.
+        /// </summary>
+        internal static string STEAM_PRICE {
+            get {
+                return ResourceManager.GetString("STEAM_PRICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GetSchemaURL/v1?key={0}.
+        /// </summary>
+        internal static string STEAM_SCHEMA_URL {
+            get {
+                return ResourceManager.GetString("STEAM_SCHEMA_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GetStoreMetaData/v1?key={0}&amp;language=en.
+        /// </summary>
+        internal static string STEAM_STORE {
+            get {
+                return ResourceManager.GetString("STEAM_STORE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IGetUsers/v3?key={0}.
+        /// </summary>
+        internal static string USERS_USERS {
+            get {
+                return ResourceManager.GetString("USERS_USERS", resourceCulture);
             }
         }
     }

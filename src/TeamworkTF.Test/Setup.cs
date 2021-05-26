@@ -5,12 +5,16 @@ namespace TeamworkTF.Test
 {
     public class Setup
     {
-        public TeamworkClient Client;
+        public Sharp.TeamworkTF TeamworkTF;
+        public SteamAPI Steam;
+        public MarketplaceTF MarketplaceTF;
 
         [OneTimeSetUp]
         public void GetSetup()
         {
-            Client = new TeamworkClient("CAYpIqrbaw4WgZcmBd61htfiePyoVzHJ");
+            TeamworkTF = new Sharp.TeamworkTF(null);
+            Steam = new SteamAPI(null);
+            MarketplaceTF = new MarketplaceTF();
         }
     }
 }

@@ -10,13 +10,13 @@ using TeamworkTF.Sharp.Properties;
 
 namespace TeamworkTF.Sharp
 {
-    public class TeamworkClient
+    public class TeamworkTF
     {
         private readonly string _apiKey;
 
-        public TeamworkClient(string apiKey)
+        public TeamworkTF(string apiKey)
         {
-            _apiKey = string.IsNullOrWhiteSpace(apiKey) ? Resources.ERROR_INVALID_KEY : apiKey;
+            _apiKey = string.IsNullOrWhiteSpace(apiKey) ? Resources.ERROR_KEY_TEAMWORK : apiKey;
         }
 
         private async Task<T> GetRequest<T>(string query)
@@ -118,16 +118,6 @@ namespace TeamworkTF.Sharp
         #region CREATORS
 
         /// <summary>
-        ///     Get a list of maps based on the creator's SteamID64.
-        /// </summary>
-        /// <param name="steamId">SteamID64 of the map creator.</param>
-        /// <returns>An array of map objects that includes just the map name.</returns>
-        public async Task<List<Map>> GetMapCreatorAsync(string steamId)
-        {
-            return await GetRequest<List<Map>>(string.Format(Resources.CREATORS_MAP, steamId)).ConfigureAwait(false);
-        }
-
-        /// <summary>
         ///     Get a list of YouTube creators based on their SteamID64.
         /// </summary>
         /// <param name="steamId">SteamID64 of a YouTube content creator.</param>
@@ -147,9 +137,9 @@ namespace TeamworkTF.Sharp
         /// </summary>
         /// <returns>An object containing all game modes recognized by teamwork.tf</returns>
         /// <remarks>https://teamwork.tf/community/quickplay</remarks>
-        public async Task<GameMode> GetGameModeListAsync()
+        public async Task<GameModes> GetGameModeListAsync()
         {
-            return await GetRequest<GameMode>(Resources.SERVER_MODES).ConfigureAwait(false);
+            return await GetRequest<GameModes>(Resources.SERVER_MODES).ConfigureAwait(false);
         }
 
         /// <summary>

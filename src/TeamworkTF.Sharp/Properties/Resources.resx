@@ -117,12 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="API_LINK" xml:space="preserve">
-    <value>https://teamwork.tf/api/v1/{0}{1}key={2}</value>
-    <comment>0 = query, 1 = delimeter, 2 = key</comment>
+  <data name="API_MARKETPLACE" xml:space="preserve">
+    <value>https://marketplace.tf/api/{0}</value>
   </data>
-  <data name="CREATORS_MAP" xml:space="preserve">
-    <value>gamemap-creator/steamid/{0}</value>
+  <data name="API_STEAM" xml:space="preserve">
+    <value>http://api.steampowered.com/IEconItems_440/{0}</value>
+  </data>
+  <data name="API_TEAMWORK" xml:space="preserve">
+    <value>https://teamwork.tf/api/v1/{0}{1}key={2}</value>
   </data>
   <data name="CREATORS_YOUTUBE" xml:space="preserve">
     <value>youtube-creator/steamid/{0}</value>
@@ -130,7 +132,13 @@
   <data name="ERROR_INVALID_IP" xml:space="preserve">
     <value>The server address you have provided is invalid. Please provide a valid address like: 193.221.192.28</value>
   </data>
-  <data name="ERROR_INVALID_KEY" xml:space="preserve">
+  <data name="ERROR_KEY_MARKETPLACE" xml:space="preserve">
+    <value>An API key must be provided. Only members of Marketplace's sellers program can get the key here: https://marketplace.tf/apisettings</value>
+  </data>
+  <data name="ERROR_KEY_STEAM" xml:space="preserve">
+    <value>An API key must be provided. Go to: https://steamcommunity.com/dev/apikey to get your Steam API key.</value>
+  </data>
+  <data name="ERROR_KEY_TEAMWORK" xml:space="preserve">
     <value>An API key must be provided. Go to: https://teamwork.tf/settings and look for your API key under 'Show optional settings'.</value>
   </data>
   <data name="MAP_IMAGES" xml:space="preserve">
@@ -144,6 +152,18 @@
   </data>
   <data name="MAP_THUMBNAIL" xml:space="preserve">
     <value>map-stats/mapthumbnail/{0}</value>
+  </data>
+  <data name="MARKETPLACE_BOTS" xml:space="preserve">
+    <value>Bots/GetBots/v2</value>
+  </data>
+  <data name="MARKETPLACE_DASHBOARD" xml:space="preserve">
+    <value>Seller/GetDashboardItems/v2?key={0}</value>
+  </data>
+  <data name="MARKETPLACE_ENDPOINTS" xml:space="preserve">
+    <value>Meta/GetEndpoints/v1</value>
+  </data>
+  <data name="MARKETPLACE_SALES" xml:space="preserve">
+    <value>Seller/GetSales/v2?key={0}&amp;num={1}&amp;start_before={2}</value>
   </data>
   <data name="NEWS" xml:space="preserve">
     <value>news</value>
@@ -198,5 +218,23 @@
   </data>
   <data name="SERVER_MODES_SEARCH" xml:space="preserve">
     <value>quickplay/{0}</value>
+  </data>
+  <data name="STEAM_ITEMS" xml:space="preserve">
+    <value>GetPlayerItems/v0001?key={0}&amp;steamid={1}</value>
+  </data>
+  <data name="STEAM_ITEMS_SCHEMA" xml:space="preserve">
+    <value>GetSchemaItems/v1?key={0}&amp;language=en</value>
+  </data>
+  <data name="STEAM_PRICE" xml:space="preserve">
+    <value>https://steamcommunity.com/market/priceoverview/?currency=1&amp;appid=440&amp;market_hash_name={0}</value>
+  </data>
+  <data name="STEAM_SCHEMA_URL" xml:space="preserve">
+    <value>GetSchemaURL/v1?key={0}</value>
+  </data>
+  <data name="STEAM_STORE" xml:space="preserve">
+    <value>GetStoreMetaData/v1?key={0}&amp;language=en</value>
+  </data>
+  <data name="USERS_USERS" xml:space="preserve">
+    <value>IGetUsers/v3?key={0}</value>
   </data>
 </root>

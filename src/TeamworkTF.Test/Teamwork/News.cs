@@ -7,26 +7,26 @@ namespace TeamworkTF.Test
         [Test]
         public void GetNewsOverview()
         {
-            Assert.IsNotNull(Client.GetNewsOverviewAsync().Result);
+            Assert.Greater(TeamworkTF.GetNewsOverviewAsync().Result.Count, 0);
         }
 
         [Test]
         public void GetNewsPost()
         {
-            Assert.IsNotNull(Client.GetNewsPostAsync("a20d4d212c82a76c9915dac6b23bd53d").Result.Title);
-            Assert.IsNull(Client.GetNewsPostAsync("99999999999999999999999999999999").Result.Title);
+            Assert.IsNotNull(TeamworkTF.GetNewsPostAsync("a20d4d212c82a76c9915dac6b23bd53d").Result.Title);
+            Assert.IsNull(TeamworkTF.GetNewsPostAsync("99999999999999999999999999999999").Result.Title);
         }
 
         [Test]
         public void GetNewsByPage()
         {
-            Assert.IsNotNull(Client.GetNewsByPageAsync(5).Result);
+            Assert.IsNotNull(TeamworkTF.GetNewsByPageAsync(5).Result);
         }
 
         [Test]
         public void GetNewsByProvider()
         {
-            Assert.IsNotNull(Client.GetNewsByProviderAsync("kritzkast").Result);
+            Assert.Greater(TeamworkTF.GetNewsByProviderAsync("kritzkast").Result.Count, 0);
         }
     }
 }

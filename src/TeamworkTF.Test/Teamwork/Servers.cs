@@ -5,81 +5,90 @@ namespace TeamworkTF.Test
     public class Servers : Setup
     {
         [Test]
+        public void GetServerBanner()
+        {
+            Assert.IsTrue(TeamworkTF.GetServerBanner("193.221.192.28").Contains("png"));
+            Assert.IsFalse(TeamworkTF.GetServerBanner("9999.2341.4324.2132").Contains("png"));
+        }
+
+        [Test]
         public void GetGameModeList()
         {
-            Assert.IsNotNull(Client.GetGameModeListAsync().Result);
+            var results = TeamworkTF.GetGameModeListAsync().Result;
+            Assert.Greater(results.Official.Count, 0);
+            Assert.Greater(results.Community.Count, 0);
         }
 
         [Test]
         public void GetGameMode()
         {
-            Assert.IsNotNull(Client.GetGameModeAsync("payload").Result.Title);
+            Assert.IsNotNull(TeamworkTF.GetGameModeAsync("payload").Result.Id);
         }
 
         [Test]
         public void GetServerListByGameMode()
         {
-            Assert.IsNotNull(Client.GetServerListByGameModeAsync("payload").Result);
-            Assert.IsNull(Client.GetServerListByGameModeAsync("payloader").Result);
+            Assert.IsNotNull(TeamworkTF.GetServerListByGameModeAsync("payload").Result);
+            Assert.IsNull(TeamworkTF.GetServerListByGameModeAsync("payloader").Result);
         }
 
         [Test]
         public void GetServerByIp()
         {
-            Assert.IsNotNull(Client.GetServerByIpAsync("164.132.233.16", 27022).Result);
+            Assert.Greater(TeamworkTF.GetServerByIpAsync("138.197.133.71").Result.Count, 0);
         }
 
         [Test]
         public void GetCommunityProvider()
         {
-            Assert.IsNotNull(Client.GetCommunityProviderAsync("skial").Result);
-            Assert.IsNull(Client.GetCommunityProviderAsync("skiil").Result);
+            Assert.IsNotNull(TeamworkTF.GetCommunityProviderAsync("skial").Result);
+            Assert.IsNull(TeamworkTF.GetCommunityProviderAsync("skiil").Result);
         }
 
         [Test]
         public void GetCommunityServers()
         {
-            Assert.Greater(Client.GetCommunityServersAsync("skial").Result.Count, 0);
-            Assert.AreEqual(Client.GetCommunityServersAsync("skiil").Result.Count, 0);
+            Assert.Greater(TeamworkTF.GetCommunityServersAsync("skial").Result.Count, 0);
+            Assert.AreEqual(TeamworkTF.GetCommunityServersAsync("skiil").Result.Count, 0);
         }
 
         [Test]
         public void GetCommunityStats()
         {
-            Assert.IsNotNull(Client.GetCommunityStatsAsync("skial").Result);
-            Assert.IsNull(Client.GetCommunityStatsAsync("skiil").Result);
+            Assert.IsNotNull(TeamworkTF.GetCommunityStatsAsync("skial").Result);
+            Assert.IsNull(TeamworkTF.GetCommunityStatsAsync("skiil").Result);
         }
 
         [Test]
         public void GetCompetitiveProvider()
         {
-            Assert.IsNotNull(Client.GetCompetitiveProviderAsync("ugc").Result);
-            Assert.IsNull(Client.GetCompetitiveProviderAsync("ugh").Result);
+            Assert.IsNotNull(TeamworkTF.GetCompetitiveProviderAsync("ugc").Result);
+            Assert.IsNull(TeamworkTF.GetCompetitiveProviderAsync("ugh").Result);
         }
 
         [Test]
         public void GetCompetitiveStats()
         {
-            Assert.IsNotNull(Client.GetCompetitiveStatsAsync("ugc").Result);
-            Assert.IsNull(Client.GetCompetitiveStatsAsync("ugh").Result);
+            Assert.IsNotNull(TeamworkTF.GetCompetitiveStatsAsync("ugc").Result);
+            Assert.IsNull(TeamworkTF.GetCompetitiveStatsAsync("ugh").Result);
         }
 
         [Test]
         public void GetServerLists()
         {
-            Assert.IsNotNull(Client.GetServerListsAsync().Result);
+            Assert.Greater(TeamworkTF.GetServerListsAsync().Result.Count, 0);
         }
 
         [Test]
         public void GetServerListById()
         {
-            Assert.IsNotNull(Client.GetServerListByIdAsync(1).Result);
+            Assert.NotNull(TeamworkTF.GetServerListByIdAsync(1).Result);
         }
 
         [Test]
         public void GetServersFromServerList()
         {
-            Assert.IsNotNull(Client.GetServersFromServerListAsync(1).Result);
+            Assert.Greater(TeamworkTF.GetServersFromServerListAsync(1).Result.Count, 0);
         }
     }
 }
