@@ -3,15 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <IsPackable>false</IsPackable>
-    <Version>1.4.0</Version>
+    <Version>1.4.1</Version>
     <Authors>Igor Nikitin</Authors>
     <Company>CriticalFlaw</Company>
     <Description />
     <Copyright>2021</Copyright>
     <RepositoryUrl>https://github.com/CriticalFlaw/TeamworkTF.Sharp</RepositoryUrl>
     <PackageTags>tf2</PackageTags>
-    <AssemblyVersion>1.4.0.0</AssemblyVersion>
-    <FileVersion>1.4.0.0</FileVersion>
+    <AssemblyVersion>1.4.1.0</AssemblyVersion>
+    <FileVersion>1.4.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
