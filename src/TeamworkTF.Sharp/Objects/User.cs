@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace TeamworkTF.Sharp
 {
-    public class Creator
+    public class User
     {
         [JsonProperty("id")] public long Id { get; set; }
 

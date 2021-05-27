@@ -8,11 +8,11 @@ using TeamworkTF.Sharp.Properties;
 
 namespace TeamworkTF.Sharp
 {
-    public class SteamAPI
+    public class SteamApi
     {
         private readonly string _apiKey;
 
-        public SteamAPI(string apiKey)
+        public SteamApi(string apiKey)
         {
             _apiKey = string.IsNullOrWhiteSpace(apiKey) ? Resources.ERROR_KEY_STEAM : apiKey;
         }
@@ -41,34 +41,34 @@ namespace TeamworkTF.Sharp
         ///     Retrieve TF2 player items from the Steam API.
         /// </summary>
         /// <param name="steamId">User's Steam ID (64-Hex)</param>
-        public async Task<Inventory> GetPlayerItemsAsync(string steamId)
+        public async Task<InventoryRoot> GetPlayerItemsAsync(string steamId)
         {
-            return await GetRequest<Inventory>(string.Format(Resources.STEAM_ITEMS, _apiKey, steamId))
+            return await GetRequest<InventoryRoot>(string.Format(Resources.STEAM_ITEMS, _apiKey, steamId))
                 .ConfigureAwait(false);
         }
 
         /// <summary>
         ///     Retrieve TF2 schema items from the Steam API.
         /// </summary>
-        public async Task<Schema> GetSchemaItemsAsync()
+        public async Task<SchemaRoot> GetSchemaItemsAsync()
         {
-            return await GetRequest<Schema>(string.Format(Resources.STEAM_ITEMS_SCHEMA, _apiKey)).ConfigureAwait(false);
+            return await GetRequest<SchemaRoot>(string.Format(Resources.STEAM_ITEMS_SCHEMA, _apiKey)).ConfigureAwait(false);
         }
 
         /// <summary>
         ///     Retrieve TF2 schema from the Steam API.
         /// </summary>
-        public async Task<Schema> GetSchemaUrlAsync()
+        public async Task<SchemaRoot> GetSchemaUrlAsync()
         {
-            return await GetRequest<Schema>(string.Format(Resources.STEAM_SCHEMA_URL, _apiKey)).ConfigureAwait(false);
+            return await GetRequest<SchemaRoot>(string.Format(Resources.STEAM_SCHEMA_URL, _apiKey)).ConfigureAwait(false);
         }
 
         /// <summary>
         ///     Retrieve store meta data from the Steam API.
         /// </summary>
-        public async Task<Store> GetStoreDataAsync()
+        public async Task<Steam> GetStoreDataAsync()
         {
-            return await GetRequest<Store>(string.Format(Resources.STEAM_STORE, _apiKey)).ConfigureAwait(false);
+            return await GetRequest<Steam>(string.Format(Resources.STEAM_STORE, _apiKey)).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -76,7 +76,8 @@ namespace TeamworkTF.Sharp
         /// </summary>
         public async Task<Price> GetMarketPriceAsync(string query)
         {
-            return await GetRequest<Price>(string.Format(Resources.STEAM_PRICE, query.Replace(" ", "%20"))).ConfigureAwait(false);
+            return await GetRequest<Price>(string.Format(Resources.STEAM_PRICE, query.Replace(" ", "%20")))
+                .ConfigureAwait(false);
         }
     }
 }

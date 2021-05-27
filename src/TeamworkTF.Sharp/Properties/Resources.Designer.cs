@@ -61,15 +61,6 @@ namespace TeamworkTF.Sharp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://marketplace.tf/api/{0}.
-        /// </summary>
-        internal static string API_MARKETPLACE {
-            get {
-                return ResourceManager.GetString("API_MARKETPLACE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to http://api.steampowered.com/IEconItems_440/{0}.
         /// </summary>
         internal static string API_STEAM {
@@ -88,15 +79,6 @@ namespace TeamworkTF.Sharp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to youtube-creator/steamid/{0}.
-        /// </summary>
-        internal static string CREATORS_YOUTUBE {
-            get {
-                return ResourceManager.GetString("CREATORS_YOUTUBE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The server address you have provided is invalid. Please provide a valid address like: 193.221.192.28.
         /// </summary>
         internal static string ERROR_INVALID_IP {
@@ -106,16 +88,7 @@ namespace TeamworkTF.Sharp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An API key must be provided. Only members of Marketplace&apos;s sellers program can get the key here: https://marketplace.tf/apisettings.
-        /// </summary>
-        internal static string ERROR_KEY_MARKETPLACE {
-            get {
-                return ResourceManager.GetString("ERROR_KEY_MARKETPLACE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An API key must be provided. Go to: https://steamcommunity.com/dev/apikey to get your Steam API key..
+        ///   Looks up a localized string similar to An API key must be provided. Go to: https://steamcommunity.com/dev/apikey to get your API key..
         /// </summary>
         internal static string ERROR_KEY_STEAM {
             get {
@@ -165,42 +138,6 @@ namespace TeamworkTF.Sharp.Properties {
         internal static string MAP_THUMBNAIL {
             get {
                 return ResourceManager.GetString("MAP_THUMBNAIL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bots/GetBots/v2.
-        /// </summary>
-        internal static string MARKETPLACE_BOTS {
-            get {
-                return ResourceManager.GetString("MARKETPLACE_BOTS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Seller/GetDashboardItems/v2?key={0}.
-        /// </summary>
-        internal static string MARKETPLACE_DASHBOARD {
-            get {
-                return ResourceManager.GetString("MARKETPLACE_DASHBOARD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Meta/GetEndpoints/v1.
-        /// </summary>
-        internal static string MARKETPLACE_ENDPOINTS {
-            get {
-                return ResourceManager.GetString("MARKETPLACE_ENDPOINTS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Seller/GetSales/v2?key={0}&amp;num={1}&amp;start_before={2}.
-        /// </summary>
-        internal static string MARKETPLACE_SALES {
-            get {
-                return ResourceManager.GetString("MARKETPLACE_SALES", resourceCulture);
             }
         }
         
@@ -412,11 +349,11 @@ namespace TeamworkTF.Sharp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IGetUsers/v3?key={0}.
+        ///   Looks up a localized string similar to youtube-creator/steamid/{0}.
         /// </summary>
-        internal static string USERS_USERS {
+        internal static string USER_CREATOR {
             get {
-                return ResourceManager.GetString("USERS_USERS", resourceCulture);
+                return ResourceManager.GetString("USER_CREATOR", resourceCulture);
             }
         }
     }

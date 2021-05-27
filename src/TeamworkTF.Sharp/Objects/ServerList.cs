@@ -11,9 +11,9 @@ namespace TeamworkTF.Sharp
 
         [JsonProperty("description")] public string Description { get; set; }
 
-        [JsonProperty("description_large")] public string DescriptionLarge { get; set; }
+        [JsonProperty("description_large")] public string DescriptionLong { get; set; }
 
-        [JsonProperty("creator")] public Creator Creator { get; set; }
+        [JsonProperty("creator")] public User Creator { get; set; }
 
         [JsonProperty("subscribed")] public long Subscribed { get; set; }
 
@@ -23,45 +23,45 @@ namespace TeamworkTF.Sharp
     public class Filters
     {
         [JsonProperty("filter_hostname_whitelist", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> FilterHostnameWhitelist { get; set; }
+        public List<string> HostnameWhitelist { get; set; }
 
         [JsonProperty("filter_hostname_blacklist", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> FilterHostnameBlacklist { get; set; }
+        public List<string> HostnameBlacklist { get; set; }
 
         [JsonProperty("filter_addr_whitelist", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> FilterAddrWhitelist { get; set; }
-
-        [JsonProperty("filter_tags_whitelist", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> FilterTagsWhitelist { get; set; }
+        public List<string> AddressWhitelist { get; set; }
 
         [JsonProperty("filter_addr_blacklist", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> FilterAddrBlacklist { get; set; }
+        public List<string> AddressBlacklist { get; set; }
+
+        [JsonProperty("filter_tags_whitelist", NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> TagsWhitelist { get; set; }
 
         [JsonProperty("filter_tags_blacklist", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> FilterTagsBlacklist { get; set; }
+        public List<string> TagsBlacklist { get; set; }
 
         [JsonProperty("filter_gamemode_whitelist", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> FilterGamemodeWhitelist { get; set; }
+        public List<string> GameModeWhitelist { get; set; }
 
         [JsonProperty("filter_gamemode_blacklist", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> FilterGamemodeBlacklist { get; set; }
+        public List<string> GameModeBlacklist { get; set; }
 
         [JsonProperty("filter_map_name_whitelist", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> FilterMapNameWhitelist { get; set; }
+        public List<string> MapWhitelist { get; set; }
 
         [JsonProperty("filter_map_name_blacklist", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> FilterMapNameBlacklist { get; set; }
+        public List<string> MapBlacklist { get; set; }
 
         [JsonProperty("filter_provider_blacklist", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> FilterProviderBlacklist { get; set; }
+        public List<string> ProviderBlacklist { get; set; }
 
         [JsonProperty("filter_has_players", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? FilterHasPlayers { get; set; }
+        public bool? HasPlayers { get; set; }
 
         [JsonProperty("filter_has_rtd", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? FilterHasRtd { get; set; }
+        public bool? HasRtd { get; set; }
 
         [JsonProperty("filter_next_map_name_whitelist", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> FilterNextMapNameWhitelist { get; set; }
+        public List<string> NextMapWhitelist { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace TeamworkTF.Test
         [Test]
         public void GetStoreData()
         {
-            Assert.IsNotNull(Steam.GetStoreDataAsync().Result.Result);
+            Assert.IsNotNull(Steam.GetStoreDataAsync().Result);
         }
 
         [Test]

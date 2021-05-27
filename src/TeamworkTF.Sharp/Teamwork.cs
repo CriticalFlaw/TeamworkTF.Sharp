@@ -72,6 +72,21 @@ namespace TeamworkTF.Sharp
 
         #endregion BANNER
 
+        #region USER
+
+        /// <summary>
+        ///     Get a list of community creators using their SteamID64.
+        /// </summary>
+        /// <param name="steamId">SteamID64 of a YouTube content creator.</param>
+        /// <returns>An array of YouTube creator objects that includes the name and social media links.</returns>
+        public async Task<List<User>> GetCommunityUserAsync(string steamId)
+        {
+            return await GetRequest<List<User>>(string.Format(Resources.USER_CREATOR, steamId))
+                .ConfigureAwait(false);
+        }
+
+        #endregion USER
+
         #region NEWS
 
         /// <summary>
@@ -114,21 +129,6 @@ namespace TeamworkTF.Sharp
         }
 
         #endregion NEWS
-
-        #region CREATORS
-
-        /// <summary>
-        ///     Get a list of YouTube creators based on their SteamID64.
-        /// </summary>
-        /// <param name="steamId">SteamID64 of a YouTube content creator.</param>
-        /// <returns>An array of YouTube creator objects that includes the name and social media links.</returns>
-        public async Task<List<Creator>> GetYouTubeCreatorAsync(string steamId)
-        {
-            return await GetRequest<List<Creator>>(string.Format(Resources.CREATORS_YOUTUBE, steamId))
-                .ConfigureAwait(false);
-        }
-
-        #endregion CREATORS
 
         #region SERVERS
 

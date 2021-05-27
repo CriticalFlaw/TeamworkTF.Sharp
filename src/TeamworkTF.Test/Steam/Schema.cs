@@ -7,19 +7,20 @@ namespace TeamworkTF.Test
         [Test]
         public void GetPlayerItems()
         {
-            Assert.Greater(Steam.GetPlayerItemsAsync("76561198041892999").Result.Result.Items.Count, 0);
+            var results = Steam.GetPlayerItemsAsync("76561198041892999").Result.Inventory.Items;
+            Assert.Greater(results.Count, 0);
         }
 
         [Test]
         public void GetSchemaItems()
         {
-            Assert.Greater(Steam.GetSchemaItemsAsync().Result.Result.Items.Count, 0);
+            Assert.Greater(Steam.GetSchemaItemsAsync().Result.Schema.Items.Count, 0);
         }
 
         [Test]
         public void GetSchemaUrl()
         {
-            Assert.NotNull(Steam.GetSchemaUrlAsync().Result.Result.ItemsGameUrl);
+            Assert.NotNull(Steam.GetSchemaUrlAsync().Result.Schema.SchemaUrl);
         }
     }
 }

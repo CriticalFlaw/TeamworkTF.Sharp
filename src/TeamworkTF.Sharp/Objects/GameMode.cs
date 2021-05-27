@@ -21,10 +21,8 @@ namespace TeamworkTF.Sharp
 
     public class GameModes
     {
-        [JsonProperty("gamemodes_official")]
-        public List<GameMode> Official { get; set; }
+        [JsonProperty("gamemodes_official")] public List<GameMode> Official { get; set; }
 
-        [JsonProperty("gamemodes_community")]
-        public List<GameMode> Community { get; set; }
+        [JsonProperty("gamemodes_community")] public List<GameMode> Community { get; set; }
     }
 }
