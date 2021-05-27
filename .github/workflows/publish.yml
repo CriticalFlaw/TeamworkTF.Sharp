@@ -1,5 +1,5 @@
 name: TeamworkTF.Sharp
-on: [push, pull_request:]
+on: [push, pull_request]
 jobs:
   main:
     runs-on: windows-latest
