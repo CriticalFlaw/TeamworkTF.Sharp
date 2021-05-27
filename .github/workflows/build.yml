@@ -1,4 +1,4 @@
-name: TeamworkTF.Sharp
+name: Build, Test, Publish
 on: [push, pull_request]
 jobs:
   main:
@@ -16,3 +16,18 @@ jobs:
         teamworkTf: ${{ secrets.TOKEN_TEAMWORKTF }}
         steam: ${{ secrets.TOKEN_STEAM }}
       run: dotnet test ./src/TeamworkTF.Test/TeamworkTF.Test.csproj
+    - name: publish on version change
+      id: publish_nuget
+      uses: rohith/publish-nuget@v2
+      with:
+        # Filepath of the project to be packaged, relative to root of repository
+        PROJECT_FILE_PATH: ./src/TeamworkTF.Sharp/TeamworkTF.Sharp.csproj
+        
+        # NuGet package id, used for version detection & defaults to project name
+        PACKAGE_NAME: TeamworkTF.Sharp
+        
+        # Regex pattern to extract version info in a capturing group
+        VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
+        
+        # API key to authenticate with NuGet server
+        NUGET_KEY: ${{ secrets.TOKEN_NUGET }}
