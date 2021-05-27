@@ -1,9 +1,5 @@
 name: TeamworkTF.Sharp
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request:]
 jobs:
   main:
     runs-on: windows-latest
@@ -16,4 +12,7 @@ jobs:
     - name: Build
       run: dotnet build ./src/TeamworkTF.Sharp/TeamworkTF.Sharp.csproj --configuration Release
     - name: Test
+      env:
+        teamworkTf: ${{ secrets.TOKEN_TEAMWORKTF }}
+        steam: ${{ secrets.TOKEN_STEAM }}
       run: dotnet test ./src/TeamworkTF.Test/TeamworkTF.Test.csproj
