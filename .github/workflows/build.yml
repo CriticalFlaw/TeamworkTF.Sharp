@@ -16,7 +16,7 @@ jobs:
         teamworkTf: ${{ secrets.TOKEN_TEAMWORKTF }}
         steam: ${{ secrets.TOKEN_STEAM }}
       run: dotnet test ./src/TeamworkTF.Test/TeamworkTF.Test.csproj
-    - name: publish on version change
+    - name: Publish
       id: publish_nuget
       uses: rohith/publish-nuget@v2
       with:
