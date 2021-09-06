@@ -8,11 +8,11 @@ using TeamworkTF.Sharp.Properties;
 
 namespace TeamworkTF.Sharp
 {
-    public class SteamApi
+    public class SteamAPI
     {
         private readonly string _apiKey;
 
-        public SteamApi(string apiKey)
+        public SteamAPI(string apiKey)
         {
             _apiKey = string.IsNullOrWhiteSpace(apiKey) ? Resources.ERROR_KEY_STEAM : apiKey;
         }
@@ -76,8 +76,7 @@ namespace TeamworkTF.Sharp
         /// </summary>
         public async Task<Price> GetMarketPriceAsync(string query)
         {
-            return await GetRequest<Price>(string.Format(Resources.STEAM_PRICE, query.Replace(" ", "%20")))
-                .ConfigureAwait(false);
+            return await GetRequest<Price>(string.Format(Resources.STEAM_PRICE, query.Replace(" ", "%20"))).ConfigureAwait(false);
         }
     }
 }

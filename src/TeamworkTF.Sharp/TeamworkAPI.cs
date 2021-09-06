@@ -10,11 +10,11 @@ using TeamworkTF.Sharp.Properties;
 
 namespace TeamworkTF.Sharp
 {
-    public class TeamworkTF
+    public class TeamworkAPI
     {
         private readonly string _apiKey;
 
-        public TeamworkTF(string apiKey)
+        public TeamworkAPI(string apiKey)
         {
             _apiKey = string.IsNullOrWhiteSpace(apiKey) ? Resources.ERROR_KEY_TEAMWORK : apiKey;
         }

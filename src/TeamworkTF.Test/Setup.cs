@@ -1,18 +1,17 @@
 using System;
 using NUnit.Framework;
+using TeamworkTF.Sharp;
 
 namespace TeamworkTF.Test
 {
     public class Setup
     {
-        public Sharp.TeamworkTF TeamworkTF;
-        public Sharp.SteamApi Steam;
+        public TeamworkAPI TeamworkTF;
 
         [OneTimeSetUp]
         public void GetSetup()
         {
-            TeamworkTF = new Sharp.TeamworkTF(Environment.GetEnvironmentVariable("teamworkTf") ?? "");
-            Steam = new Sharp.SteamApi(Environment.GetEnvironmentVariable(Environment.GetEnvironmentVariable("steam") ?? ""));
+            TeamworkTF = new TeamworkAPI(Environment.GetEnvironmentVariable("teamworkTf") ?? "CAYpIqrbaw4WgZcmBd61htfiePyoVzHJ");
         }
     }
 }
