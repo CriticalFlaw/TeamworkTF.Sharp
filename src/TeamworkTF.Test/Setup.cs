@@ -11,7 +11,11 @@ namespace TeamworkTF.Test
         [OneTimeSetUp]
         public void GetSetup()
         {
-            TeamworkTF = new TeamworkAPI(Environment.GetEnvironmentVariable("teamworkTf") ?? "CAYpIqrbaw4WgZcmBd61htfiePyoVzHJ");
+            var apiKey = Environment.GetEnvironmentVariable("teamworkTf");
+            if (string.IsNullOrWhiteSpace(apiKey))
+                Assert.Ignore("Set the 'teamworkTf' environment variable to a teamwork.tf API key to run these tests.");
+
+            TeamworkTF = new TeamworkAPI(apiKey);
         }
     }
 }

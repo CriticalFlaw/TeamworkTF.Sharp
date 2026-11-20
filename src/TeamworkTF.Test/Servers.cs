@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace TeamworkTF.Test
@@ -5,90 +7,89 @@ namespace TeamworkTF.Test
     public class Servers : Setup
     {
         [Test]
-        public void GetServerBanner()
+        public async Task GetGameModeList()
         {
-            Assert.IsTrue(TeamworkTF.GetServerBanner("193.221.192.28").Contains("png"));
-            Assert.IsFalse(TeamworkTF.GetServerBanner("9999.2341.4324.2132").Contains("png"));
+            var results = await TeamworkTF.GetGameModeListAsync();
+            Assert.That(results.Official, Is.Not.Empty);
+            Assert.That(results.Community, Is.Not.Empty);
         }
 
         [Test]
-        public void GetGameModeList()
+        public async Task GetGameMode()
         {
-            var results = TeamworkTF.GetGameModeListAsync().Result;
-            Assert.Greater(results.Official.Count, 0);
-            Assert.Greater(results.Community.Count, 0);
+            Assert.That((await TeamworkTF.GetGameModeAsync("payload")).Id, Is.Not.Null);
         }
 
         [Test]
-        public void GetGameMode()
+        public async Task GetServerListByGameMode()
         {
-            Assert.IsNotNull(TeamworkTF.GetGameModeAsync("payload").Result.Id);
+            Assert.That(await TeamworkTF.GetServerListByGameModeAsync("payload"), Is.Not.Null);
+            Assert.That(await TeamworkTF.GetServerListByGameModeAsync("payloader"), Is.Null);
         }
 
         [Test]
-        public void GetServerListByGameMode()
+        public async Task GetServerByIp()
         {
-            Assert.IsNotNull(TeamworkTF.GetServerListByGameModeAsync("payload").Result);
-            Assert.IsNull(TeamworkTF.GetServerListByGameModeAsync("payloader").Result);
+            // Look up a server that's online right now, since any hardcoded address eventually goes offline.
+            var online = (await TeamworkTF.GetServerListByGameModeAsync("payload"))
+                ?.FirstOrDefault(x => !string.IsNullOrEmpty(x.Ip) && x.Port > 0);
+            if (online is null) Assert.Inconclusive("No payload servers are online to look up.");
+
+            var results = await TeamworkTF.GetServerByIpAsync(online.Ip, online.Port);
+            Assert.That(results, Is.Not.Empty);
         }
 
         [Test]
-        public void GetServerByIp()
+        public async Task GetCommunityProvider()
         {
-            Assert.Greater(TeamworkTF.GetServerByIpAsync("138.197.133.71").Result.Count, 0);
+            Assert.That(await TeamworkTF.GetCommunityProviderAsync("skial"), Is.Not.Null);
+            Assert.That(await TeamworkTF.GetCommunityProviderAsync("skiil"), Is.Null);
         }
 
         [Test]
-        public void GetCommunityProvider()
+        public async Task GetCommunityServers()
         {
-            Assert.IsNotNull(TeamworkTF.GetCommunityProviderAsync("skial").Result);
-            Assert.IsNull(TeamworkTF.GetCommunityProviderAsync("skiil").Result);
+            Assert.That(await TeamworkTF.GetCommunityServersAsync("skial"), Is.Not.Empty);
+            Assert.That(await TeamworkTF.GetCommunityServersAsync("skiil"), Is.Empty);
         }
 
         [Test]
-        public void GetCommunityServers()
+        public async Task GetCommunityStats()
         {
-            Assert.Greater(TeamworkTF.GetCommunityServersAsync("skial").Result.Count, 0);
-            Assert.AreEqual(TeamworkTF.GetCommunityServersAsync("skiil").Result.Count, 0);
+            Assert.That(await TeamworkTF.GetCommunityStatsAsync("skial"), Is.Not.Null);
+            Assert.That(await TeamworkTF.GetCommunityStatsAsync("skiil"), Is.Null);
         }
 
         [Test]
-        public void GetCommunityStats()
+        public async Task GetCompetitiveProvider()
         {
-            Assert.IsNotNull(TeamworkTF.GetCommunityStatsAsync("skial").Result);
-            Assert.IsNull(TeamworkTF.GetCommunityStatsAsync("skiil").Result);
+            Assert.That(await TeamworkTF.GetCompetitiveProviderAsync("ugc"), Is.Not.Null);
+            Assert.That(await TeamworkTF.GetCompetitiveProviderAsync("ugh"), Is.Null);
         }
 
         [Test]
-        public void GetCompetitiveProvider()
+        public async Task GetCompetitiveStats()
         {
-            Assert.IsNotNull(TeamworkTF.GetCompetitiveProviderAsync("ugc").Result);
-            Assert.IsNull(TeamworkTF.GetCompetitiveProviderAsync("ugh").Result);
+            Assert.That(await TeamworkTF.GetCompetitiveStatsAsync("ugc"), Is.Not.Null);
+            Assert.That(await TeamworkTF.GetCompetitiveStatsAsync("ugh"), Is.Null);
         }
 
         [Test]
-        public void GetCompetitiveStats()
+        public async Task GetServerLists()
         {
-            Assert.IsNotNull(TeamworkTF.GetCompetitiveStatsAsync("ugc").Result);
-            Assert.IsNull(TeamworkTF.GetCompetitiveStatsAsync("ugh").Result);
+            Assert.That(await TeamworkTF.GetServerListsAsync(), Is.Not.Empty);
         }
 
         [Test]
-        public void GetServerLists()
+        public async Task GetServerListById()
         {
-            Assert.Greater(TeamworkTF.GetServerListsAsync().Result.Count, 0);
+            Assert.That(await TeamworkTF.GetServerListByIdAsync(1), Is.Not.Null);
         }
 
         [Test]
-        public void GetServerListById()
+        public async Task GetServersFromServerList()
         {
-            Assert.NotNull(TeamworkTF.GetServerListByIdAsync(1).Result);
-        }
-
-        [Test]
-        public void GetServersFromServerList()
-        {
-            Assert.Greater(TeamworkTF.GetServersFromServerListAsync(1).Result.Count, 0);
+            Assert.That(await TeamworkTF.GetServersFromServerListAsync(1), Is.Not.Empty);
         }
     }
 }

@@ -1,69 +1,69 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace TeamworkTF.Sharp
+namespace TeamworkTF.Sharp.Models
 {
     public class SchemaRoot
     {
-        [JsonProperty("result")] public Schema Schema { get; set; }
+        [JsonProperty("result")] public Schema? Schema { get; set; }
     }
 
     public class Schema
     {
         [JsonProperty("status")] public int Status { get; set; }
 
-        [JsonProperty("items_game_url")] public string SchemaUrl { get; set; }
+        [JsonProperty("items_game_url")] public string? SchemaUrl { get; set; }
 
-        [JsonProperty("items")] public List<Item> Items { get; set; }
+        [JsonProperty("items")] public List<Item>? Items { get; set; }
 
         [JsonProperty("next")] public int Next { get; set; }
     }
 
     public class Item
     {
-        [JsonProperty("name")] public string Name { get; set; }
+        [JsonProperty("name")] public string? Name { get; set; }
 
         [JsonProperty("defindex")] public int Index { get; set; }
 
-        [JsonProperty("item_class")] public string Class { get; set; }
+        [JsonProperty("item_class")] public string? Class { get; set; }
 
-        [JsonProperty("item_type_name")] public string Type { get; set; }
+        [JsonProperty("item_type_name")] public string? Type { get; set; }
 
-        [JsonProperty("item_name")] public string ItemName { get; set; }
+        [JsonProperty("item_name")] public string? ItemName { get; set; }
 
         [JsonProperty("proper_name")] public bool ProperName { get; set; }
 
-        [JsonProperty("item_slot")] public string Slot { get; set; }
+        [JsonProperty("item_slot")] public string? Slot { get; set; }
 
-        [JsonProperty("model_player")] public string ModelPlayer { get; set; }
+        [JsonProperty("model_player")] public string? ModelPlayer { get; set; }
 
         [JsonProperty("item_quality")] public int Quality { get; set; }
 
-        [JsonProperty("image_inventory")] public string InventoryImage { get; set; }
+        [JsonProperty("image_inventory")] public string? InventoryImage { get; set; }
 
         [JsonProperty("min_ilevel")] public int MinLevel { get; set; }
 
         [JsonProperty("max_ilevel")] public int MaxLevel { get; set; }
 
-        [JsonProperty("image_url")] public string ImageUrl { get; set; }
+        [JsonProperty("image_url")] public string? ImageUrl { get; set; }
 
-        [JsonProperty("image_url_large")] public string ImageUrlLarge { get; set; }
+        [JsonProperty("image_url_large")] public string? ImageUrlLarge { get; set; }
 
-        [JsonProperty("craft_class")] public string CraftClass { get; set; }
+        [JsonProperty("craft_class")] public string? CraftClass { get; set; }
 
-        [JsonProperty("craft_material_type")] public string CraftMaterialType { get; set; }
+        [JsonProperty("craft_material_type")] public string? CraftMaterialType { get; set; }
 
-        [JsonProperty("capabilities")] public Capabilities Capabilities { get; set; }
+        [JsonProperty("capabilities")] public Capabilities? Capabilities { get; set; }
 
-        [JsonProperty("used_by_classes")] public List<string> UsedByClasses { get; set; }
+        [JsonProperty("used_by_classes")] public List<string>? UsedByClasses { get; set; }
 
-        [JsonProperty("item_description")] public string Description { get; set; }
+        [JsonProperty("item_description")] public string? Description { get; set; }
 
-        [JsonProperty("styles")] public List<Style> Styles { get; set; }
+        [JsonProperty("styles")] public List<Style>? Styles { get; set; }
 
-        [JsonProperty("attributes")] public List<Attribute> Attributes { get; set; }
+        [JsonProperty("attributes")] public List<SchemaAttribute>? Attributes { get; set; }
 
-        [JsonProperty("drop_type")] public string DropType { get; set; }
+        [JsonProperty("drop_type")] public string? DropType { get; set; }
     }
 
     public class Capabilities
@@ -103,17 +103,20 @@ namespace TeamworkTF.Sharp
 
     public class Style
     {
-        [JsonProperty("name")] public string Name { get; set; }
+        [JsonProperty("name")] public string? Name { get; set; }
 
         [JsonProperty("additional_hidden_bodygroups")]
-        public AdditionalHiddenBodygroups AdditionalHiddenBodygroups { get; set; }
+        public AdditionalHiddenBodygroups? AdditionalHiddenBodygroups { get; set; }
     }
 
-    public class Attribute
+    /// <summary>
+    ///     An attribute an item has by default, as listed in the item schema.
+    /// </summary>
+    public class SchemaAttribute
     {
-        [JsonProperty("name")] public string Name { get; set; }
+        [JsonProperty("name")] public string? Name { get; set; }
 
-        [JsonProperty("class")] public string Class { get; set; }
+        [JsonProperty("class")] public string? Class { get; set; }
 
         [JsonProperty("value")] public double Value { get; set; }
     }

@@ -1,13 +1,14 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 
 namespace TeamworkTF.Test
 {
     public class Users : Setup
     {
         [Test]
-        public void GetCommunityUser()
+        public async Task GetCommunityUser()
         {
-            Assert.Greater(TeamworkTF.GetCommunityUserAsync("76561198041892999").Result.Count, 0);
+            Assert.That(await TeamworkTF.GetCommunityUserAsync("76561198041892999"), Is.Not.Empty);
         }
     }
 }

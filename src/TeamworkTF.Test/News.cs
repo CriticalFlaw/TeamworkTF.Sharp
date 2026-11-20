@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace TeamworkTF.Test
@@ -5,28 +6,28 @@ namespace TeamworkTF.Test
     public class News : Setup
     {
         [Test]
-        public void GetNewsOverview()
+        public async Task GetNewsOverview()
         {
-            Assert.Greater(TeamworkTF.GetNewsOverviewAsync().Result.Count, 0);
+            Assert.That(await TeamworkTF.GetNewsOverviewAsync(), Is.Not.Empty);
         }
 
         [Test]
-        public void GetNewsPost()
+        public async Task GetNewsPost()
         {
-            Assert.IsNotNull(TeamworkTF.GetNewsPostAsync("a20d4d212c82a76c9915dac6b23bd53d").Result.Title);
-            Assert.IsNull(TeamworkTF.GetNewsPostAsync("99999999999999999999999999999999").Result.Title);
+            Assert.That((await TeamworkTF.GetNewsPostAsync("a20d4d212c82a76c9915dac6b23bd53d")).Title, Is.Not.Null);
+            Assert.That((await TeamworkTF.GetNewsPostAsync("99999999999999999999999999999999"))?.Title, Is.Null);
         }
 
         [Test]
-        public void GetNewsByPage()
+        public async Task GetNewsByPage()
         {
-            Assert.IsNotNull(TeamworkTF.GetNewsByPageAsync(5).Result);
+            Assert.That(await TeamworkTF.GetNewsByPageAsync(5), Is.Not.Null);
         }
 
         [Test]
-        public void GetNewsByProvider()
+        public async Task GetNewsByProvider()
         {
-            Assert.Greater(TeamworkTF.GetNewsByProviderAsync("kritzkast").Result.Count, 0);
+            Assert.That(await TeamworkTF.GetNewsByProviderAsync("kritzkast"), Is.Not.Empty);
         }
     }
 }

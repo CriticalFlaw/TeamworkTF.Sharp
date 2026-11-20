@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace TeamworkTF.Test
@@ -5,30 +6,30 @@ namespace TeamworkTF.Test
     public class Maps : Setup
     {
         [Test]
-        public void GetMapStats()
+        public async Task GetMapStats()
         {
-            Assert.IsNotNull(TeamworkTF.GetMapStatsAsync("pl_upward").Result);
-            Assert.IsNull(TeamworkTF.GetMapStatsAsync("plra_rupward").Result.MapName);
+            Assert.That(await TeamworkTF.GetMapStatsAsync("pl_upward"), Is.Not.Null);
+            Assert.That((await TeamworkTF.GetMapStatsAsync("plra_rupward"))?.MapName, Is.Null);
         }
 
         [Test]
-        public void GetMapThumbnail()
+        public async Task GetMapThumbnail()
         {
-            Assert.IsNotNull(TeamworkTF.GetMapThumbnailAsync("pl_upward").Result.Name);
-            Assert.IsNull(TeamworkTF.GetMapThumbnailAsync("plr_rupward").Result.Name);
+            Assert.That((await TeamworkTF.GetMapThumbnailAsync("pl_upward")).Thumbnail, Is.Not.Null);
+            Assert.That((await TeamworkTF.GetMapThumbnailAsync("plr_rupward"))?.Thumbnail, Is.Null);
         }
 
         [Test]
-        public void GetMapThumbnailContext()
+        public async Task GetMapThumbnailContext()
         {
-            Assert.IsNotNull(TeamworkTF.GetMapImagesAsync("pl_upward").Result.Thumbnail);
-            Assert.IsNull(TeamworkTF.GetMapImagesAsync("plr_rupward").Result.Thumbnail);
+            Assert.That((await TeamworkTF.GetMapImagesAsync("pl_upward")).Thumbnail, Is.Not.Null);
+            Assert.That((await TeamworkTF.GetMapImagesAsync("plr_rupward"))?.Thumbnail, Is.Null);
         }
 
         [Test]
-        public void GetMapsBySearch()
+        public async Task GetMapsBySearch()
         {
-            Assert.Greater(TeamworkTF.GetMapsBySearchAsync("hightower").Result.Count, 0);
+            Assert.That(await TeamworkTF.GetMapsBySearchAsync("hightower"), Is.Not.Empty);
         }
     }
 }

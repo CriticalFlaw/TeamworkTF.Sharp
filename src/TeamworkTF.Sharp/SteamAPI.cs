@@ -1,82 +1,100 @@
 ﻿using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using TeamworkTF.Sharp.Properties;
+using TeamworkTF.Sharp.Models;
 
 namespace TeamworkTF.Sharp
 {
+    /// <summary>
+    ///     Client for TF2 data from the Steam Web API. Methods throw <see cref="HttpRequestException" /> when the API key
+    ///     is rejected or Steam is unavailable.
+    /// </summary>
     public class SteamAPI
     {
         private readonly string _apiKey;
+        private readonly HttpClient _httpClient;
 
-        public SteamAPI(string apiKey)
+        /// <param name="apiKey">Your Steam Web API key.</param>
+        /// <exception cref="ArgumentException"><paramref name="apiKey" /> is empty.</exception>
+        public SteamAPI(string apiKey) : this(apiKey, null)
         {
-            _apiKey = string.IsNullOrWhiteSpace(apiKey) ? Resources.ERROR_KEY_STEAM : apiKey;
         }
 
-        private async Task<T> GetRequest<T>(string query)
+        /// <param name="apiKey">Your Steam Web API key.</param>
+        /// <param name="httpClient">HTTP client to send requests with. When <c>null</c>, a shared client is used.</param>
+        /// <exception cref="ArgumentException"><paramref name="apiKey" /> is empty.</exception>
+        public SteamAPI(string apiKey, HttpClient? httpClient)
         {
-            using var client = new HttpClient {BaseAddress = new Uri(Resources.API_STEAM)};
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            var response = await client.GetAsync(query).ConfigureAwait(false);
-            if (!response.IsSuccessStatusCode) return default;
-            return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync().ConfigureAwait(false),
-                new JsonSerializerSettings
-                {
-                    Error = GetHandleDeserializationError
-                });
+            if (string.IsNullOrWhiteSpace(apiKey))
+                throw new ArgumentException(Messages.MissingSteamKey, nameof(apiKey));
+
+            _apiKey = apiKey;
+            _httpClient = httpClient ?? ApiClient.Shared;
         }
 
-        public void GetHandleDeserializationError(object sender, ErrorEventArgs errorArgs)
+        private string Key => Uri.EscapeDataString(_apiKey);
+
+        private Task<T?> GetRequest<T>(string url, CancellationToken cancellationToken)
         {
-            _ = errorArgs.ErrorContext.Error.Message;
-            errorArgs.ErrorContext.Handled = true;
+            return ApiClient.GetAsync<T>(_httpClient, url, Messages.SteamKeyRejected, cancellationToken);
+        }
+
+        private Task<T?> GetEconRequest<T>(string endpoint, CancellationToken cancellationToken)
+        {
+            return GetRequest<T>(string.Format(Endpoints.SteamBase, endpoint), cancellationToken);
         }
 
         /// <summary>
         ///     Retrieve TF2 player items from the Steam API.
         /// </summary>
-        /// <param name="steamId">User's Steam ID (64-Hex)</param>
-        public async Task<InventoryRoot> GetPlayerItemsAsync(string steamId)
+        /// <param name="steamId">User's SteamID64.</param>
+        /// <param name="cancellationToken">Token to cancel the request.</param>
+        public Task<InventoryRoot?> GetPlayerItemsAsync(string steamId, CancellationToken cancellationToken = default)
         {
-            return await GetRequest<InventoryRoot>(string.Format(Resources.STEAM_ITEMS, _apiKey, steamId))
-                .ConfigureAwait(false);
+            ArgumentException.ThrowIfNullOrWhiteSpace(steamId);
+            return GetEconRequest<InventoryRoot>(
+                string.Format(Endpoints.SteamPlayerItems, Key, Uri.EscapeDataString(steamId.Trim())),
+                cancellationToken);
         }
 
         /// <summary>
         ///     Retrieve TF2 schema items from the Steam API.
         /// </summary>
-        public async Task<SchemaRoot> GetSchemaItemsAsync()
+        /// <param name="cancellationToken">Token to cancel the request.</param>
+        public Task<SchemaRoot?> GetSchemaItemsAsync(CancellationToken cancellationToken = default)
         {
-            return await GetRequest<SchemaRoot>(string.Format(Resources.STEAM_ITEMS_SCHEMA, _apiKey)).ConfigureAwait(false);
+            return GetEconRequest<SchemaRoot>(string.Format(Endpoints.SteamSchemaItems, Key), cancellationToken);
         }
 
         /// <summary>
         ///     Retrieve TF2 schema from the Steam API.
         /// </summary>
-        public async Task<SchemaRoot> GetSchemaUrlAsync()
+        /// <param name="cancellationToken">Token to cancel the request.</param>
+        public Task<SchemaRoot?> GetSchemaUrlAsync(CancellationToken cancellationToken = default)
         {
-            return await GetRequest<SchemaRoot>(string.Format(Resources.STEAM_SCHEMA_URL, _apiKey)).ConfigureAwait(false);
+            return GetEconRequest<SchemaRoot>(string.Format(Endpoints.SteamSchemaUrl, Key), cancellationToken);
         }
 
         /// <summary>
         ///     Retrieve store meta data from the Steam API.
         /// </summary>
-        public async Task<Steam> GetStoreDataAsync()
+        /// <param name="cancellationToken">Token to cancel the request.</param>
+        public Task<Steam?> GetStoreDataAsync(CancellationToken cancellationToken = default)
         {
-            return await GetRequest<Steam>(string.Format(Resources.STEAM_STORE, _apiKey)).ConfigureAwait(false);
+            return GetEconRequest<Steam>(string.Format(Endpoints.SteamStore, Key), cancellationToken);
         }
 
         /// <summary>
         ///     Retrieve the Steam Market price for a given item.
         /// </summary>
-        public async Task<Price> GetMarketPriceAsync(string query)
+        /// <param name="query">The item's market name, like "Mann Co. Supply Crate Key".</param>
+        /// <param name="cancellationToken">Token to cancel the request.</param>
+        public Task<Price?> GetMarketPriceAsync(string query, CancellationToken cancellationToken = default)
         {
-            return await GetRequest<Price>(string.Format(Resources.STEAM_PRICE, query.Replace(" ", "%20"))).ConfigureAwait(false);
+            ArgumentException.ThrowIfNullOrWhiteSpace(query);
+            return GetRequest<Price>(string.Format(Endpoints.SteamMarketPrice, Uri.EscapeDataString(query.Trim())),
+                cancellationToken);
         }
     }
 }
