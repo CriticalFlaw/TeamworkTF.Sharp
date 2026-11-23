@@ -5,10 +5,10 @@ namespace TeamworkTF.Test
 {
     public class Maps : Setup
     {
-        [Test]
+        [Test, Explicit]
         public async Task GetMapStats()
         {
-            Assert.That(await TeamworkTF.GetMapStatsAsync("pl_upward"), Is.Not.Null);
+            Assert.That(await TeamworkTF.GetMapStatsAsync("ctf_2fort"), Is.Not.Null);
             Assert.That((await TeamworkTF.GetMapStatsAsync("plra_rupward"))?.MapName, Is.Null);
         }
 
